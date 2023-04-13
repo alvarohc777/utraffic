@@ -105,7 +105,7 @@ export default {
         getDisplayPagoFactura(pagoFactura) {
             return {
                 id: pagoFactura.id,
-                factura: pagoFactura.factura,
+                factura: `${pagoFactura.factura.id} - ${pagoFactura.factura.cliente.nombre}`,
                 fecha: pagoFactura.fecha,
                 valor: pagoFactura.valor,
             };

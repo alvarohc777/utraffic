@@ -105,7 +105,7 @@ export default {
         getDisplayFactura(Factura) {
             return {
                 id: Factura.id,
-                cliente: Factura.cliente,
+                cliente: Factura.cliente.nombre,
                 fecha: Factura.fecha,
                 comentarios: Factura.comentarios,
                 saldo: Factura.saldo,
