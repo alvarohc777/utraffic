@@ -21,11 +21,11 @@
                     </template>
                 </v-data-table>
 
-                <v-card-actions v-if="pagoFacturas.length > 0">
+                <!-- <v-card-actions v-if="pagoFacturas.length > 0">
                     <v-btn small color="error" @click="removeAllPagoFacturas">
                         Eliminar todos
                     </v-btn>
-                </v-card-actions>
+                </v-card-actions> -->
             </v-card>
         </v-col>
     </v-row>

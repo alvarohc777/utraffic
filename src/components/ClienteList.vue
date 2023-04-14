@@ -21,11 +21,11 @@
                     </template>
                 </v-data-table>
 
-                <v-card-actions v-if="clientes.length > 0">
+                <!-- <v-card-actions v-if="clientes.length > 0">
                     <v-btn small color="error" @click="removeAllClientes">
                         Eliminar todos
                     </v-btn>
-                </v-card-actions>
+                </v-card-actions> -->
             </v-card>
         </v-col>
     </v-row>

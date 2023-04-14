@@ -11,7 +11,7 @@
 
                 <v-text-field v-model="factura.comentarios" label="Comentarios"></v-text-field>
 
-                <v-text-field v-model="factura.saldo" label="Saldo"></v-text-field>
+                <!-- <v-text-field v-model="factura.saldo" label="Saldo"></v-text-field> -->
             </v-form>
 
             <v-btn color="primary" class="mt-3" @click="saveFactura">Guardar</v-btn>

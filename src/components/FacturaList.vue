@@ -21,11 +21,11 @@
                     </template>
                 </v-data-table>
 
-                <v-card-actions v-if="Facturas.length > 0">
+                <!-- <v-card-actions v-if="Facturas.length > 0">
                     <v-btn small color="error" @click="removeAllFacturas">
                         Eliminar todos
                     </v-btn>
-                </v-card-actions>
+                </v-card-actions> -->
             </v-card>
         </v-col>
     </v-row>
@@ -125,3 +125,4 @@ export default {
 }
 </style>
   
+   

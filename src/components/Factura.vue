@@ -1,31 +1,17 @@
 <template>
-    <div v-if="currentCliente" class="edit-form py-3">
-        <p class="headline">Edit Cliente</p>
-
+    <div v-if="currentFactura" class="edit-form py-3">
+        <p class="headline">Edit Factura</p>
         <v-form ref="form" lazy-validation>
 
-            <v-text-field v-model="currentCliente.nombre" label="Nombre"></v-text-field>
-            <v-text-field v-model="currentCliente.telefono" label="Teléfono"></v-text-field>
-
-            <v-text-field v-model="currentCliente.direccion" label="Dirección"></v-text-field>
-
-
+            <v-text-field v-model="currentFactura.cliente.nombre" label="Cliente" readonly></v-text-field>
+            <v-text-field v-model="currentFactura.fecha" label="Fecha" readonly></v-text-field>
+            <v-text-field v-model="currentFactura.valor" label="Valor"></v-text-field>
+            <v-text-field v-model="currentFactura.comentarios" label="Comentarios"></v-text-field>
+            <v-text-field v-model="currentFactura.saldo" label="Saldo"></v-text-field>
 
             <v-divider class="my-5"></v-divider>
 
-            <v-btn v-if="currentCliente.published" @click="updatePublished(false)" color="primary" small class="mr-2">
-                UnPublish
-            </v-btn>
-
-            <v-btn v-else @click="updatePublished(true)" color="primary" small class="mr-2">
-                Publish
-            </v-btn>
-
-            <v-btn color="error" small class="mr-2" @click="deleteCliente">
-                Delete
-            </v-btn>
-
-            <v-btn color="success" small @click="updateCliente">
+            <v-btn color="success" small @click="updateFactura">
                 Update
             </v-btn>
         </v-form>
@@ -34,66 +20,43 @@
     </div>
 
     <div v-else>
-        <p>Please click on a Cliente...</p>
+        <p>Please click on a Factura...</p>
     </div>
 </template>
 <script>
-import ClienteDataService from "../services/ClienteDataService";
-
+import FacturaDataService from "../services/FacturaDataService";
 export default {
-    name: "cliente",
+    name: "factura",
     data() {
         return {
-            currentCliente: null,
+            currentFactura: null,
             message: "",
         };
     },
     methods: {
-        getCliente(id) {
-            ClienteDataService.get(id)
+        getFactura(id) {
+            FacturaDataService.get(id)
                 .then((response) => {
-                    this.currentCliente = response.data;
+                    this.currentFactura = response.data;
+                    this.currentFactura.cliente_id = response.data.cliente.id;
                     console.log(response.data);
                 })
                 .catch((e) => {
                     console.log(e);
                 });
         },
+        updateFactura() {
 
-        updatePublished(status) {
-            var data = {
-                id: this.currentCliente.id,
-                telefono: this.currentCliente.telefono,
-                direccion: this.currentCliente.direccion,
-                published: status,
-            };
-
-            ClienteDataService.update(this.currentCliente.id, data)
-                .then((response) => {
-                    this.currentCliente.published = status;
-                    console.log(response.data);
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-        },
-
-        updateCliente() {
-            ClienteDataService.update(this.currentCliente.id, this.currentCliente)
+            FacturaDataService.update(this.currentFactura.id, {
+                cliente_id: this.currentFactura.cliente_id,
+                valor: this.currentFactura.valor,
+                fecha: this.currentFactura.fecha,
+                comentarios: this.currentFactura.comentarios,
+                saldo: this.currentFactura.saldo,
+            })
                 .then((response) => {
                     console.log(response.data);
-                    this.message = "The Cliente was updated successfully!";
-                })
-                .catch((e) => {
-                    console.log(e);
-                });
-        },
-
-        deleteCliente() {
-            ClienteDataService.delete(this.currentCliente.id)
-                .then((response) => {
-                    console.log(response.data);
-                    this.$router.push({ name: "clientes" });
+                    this.message = "The Factura was updated successfully!";
                 })
                 .catch((e) => {
                     console.log(e);
@@ -102,10 +65,11 @@ export default {
     },
     mounted() {
         this.message = "";
-        this.getCliente(this.$route.params.id);
+        this.getFactura(this.$route.params.id);
     },
 };
 </script>
+
 <style>
 .edit-form {
     max-width: 300px;
