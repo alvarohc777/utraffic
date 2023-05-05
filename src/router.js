@@ -1,30 +1,3 @@
-// import Vue from "vue";
-// import Router from "vue-router";
-
-// Vue.use(Router);
-
-// export default new Router({
-//   mode: "history",
-//   routes: [
-//     {
-//       path: "/",
-//       alias: "/cliente",
-//       name: "cliente",
-//       component: () => import("./components/ClienteList")
-//     },
-//     {
-//       path: "/cliente/:id",
-//       name: "tutorial-details",
-//       component: () => import("./components/Cliente")
-//     },
-//     {
-//       path: "/add",
-//       name: "add",
-//       component: () => import("./components/AddCliente")
-//     }
-//   ]
-// });
-
 import Vue from "vue";
 import Router from "vue-router";
 import ClienteList from "./components/ClienteList";
